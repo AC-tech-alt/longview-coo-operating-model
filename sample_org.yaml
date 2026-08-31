@@ -1,0 +1,31 @@
+# Illustrative sample input, built from Longview Philanthropy's public careers page
+# (https://www.longview.org/careers/chief-operating-officer/) — not internal data.
+organization: "Longview Philanthropy"
+
+# Approximate current departments/headcount per the public JD ("~35 staff,
+# four departments: operations, donor advising, AI grantmaking, nuclear grantmaking")
+current_headcount:
+  operations: 8
+  donor_advising: 9
+  ai_grantmaking: 10
+  nuclear_grantmaking: 8
+
+# JD: "design and execute the operations and hiring strategy to double headcount"
+target_multiplier: 2.0
+timeline_months: 18
+
+# JD: "stay on top of regulatory requirements across the jurisdictions we operate in"
+jurisdictions:
+  - name: "US"
+    entity_type: "501(c)(3)/(c)(4)"
+  - name: "UK"
+    entity_type: "UK registered charity"
+
+# JD: "manage and coach People Operations, Business Operations, Finance,
+# Talent, and Grants Management leads"
+functional_leads:
+  - "People Operations"
+  - "Business Operations"
+  - "Finance"
+  - "Talent"
+  - "Grants Management"
