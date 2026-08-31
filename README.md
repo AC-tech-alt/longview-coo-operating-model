@@ -8,6 +8,14 @@ Ariel Carter — [arielebright@gmail.com](mailto:arielebright@gmail.com) · [lin
 
 Longview's COO posting asks for someone who can "build simple, robust systems for planning and decision-making that can scale" and "run operations as a service to the rest of Longview." Rather than only describe that instinct in a cover letter, this repo is a small working example of it: a toolkit that turns a description of an org (headcount, departments, jurisdictions) into three concrete artifacts a new COO would actually want ready in week one — a phased hiring plan, a decision-rights matrix, and a compliance-review cadence. It's deliberately small and readable, not a finished product — the point is to show the way I think about building scalable systems, not to ship software.
 
+## Grounded in Longview's actual mission and current priorities
+
+I built this against Longview's own public materials, not a generic COO template:
+
+- **Mission and theory of change** ([longview.org](https://www.longview.org/)): Longview directs philanthropic capital toward catastrophic risks — nuclear war between great powers, engineered pandemics, and AI misuse — on the premise that "strategic generosity can not merely better the world so much as alter the course of history." Donor capital flows through vehicles like the Frontier AI Fund and Nuclear Weapons Policy Fund. That framing is why the compliance and governance work in this repo isn't decorative: when the capital and the risk are both this consequential, operational rigor is part of the mission, not overhead on top of it.
+- **Current scale and trajectory** (Longview's public hiring materials): the org grew from roughly 24 to 35+ staff through 2026 while more than doubling annual grantmaking to $60M+, and the COO posting asks for the same trajectory again — doubling headcount toward ~70. `sample_org.yaml` and `ops_model.py`'s phase-mix logic are built around exactly that shape of growth, not a hypothetical one.
+- **Culture and working style** (published by a Longview team member): the org explicitly wants self-directed operators who are comfortable with ambiguity — "career progression isn't predetermined... advancement comes through tackling progressively harder, important problems" — across a distributed team spanning eight timezones and four hubs (Berkeley, DC, NYC, London). That's precisely the muscle six organizational transformations at Tides built: making a call, building the system, and adjusting rather than waiting for a fully specified process.
+
 ## Mapping to the role's five pillars
 
 The job description groups the COO mandate into five clusters. Here's how I'd approach each, and what this repo demonstrates for it.
@@ -20,7 +28,7 @@ I joined GlobalGiving at roughly 20 employees and helped architect the grant man
 ### 2. Regulatory & compliance
 *"Stay on top of regulatory requirements across the jurisdictions we operate in."*
 
-At Tides I owned fiscal governance and compliance infrastructure — expenditure responsibility, anti-bribery/anti-corruption, IRS and global regulatory frameworks — maintaining 100% adherence across a $500M+ portfolio. I have not personally run UK-entity compliance, but the discipline transfers directly: `build_compliance_calendar()` generates a recurring, jurisdiction-by-jurisdiction review cadence (not a legal opinion — a planning framework a compliance lead and outside counsel would fill in with jurisdiction-specific detail).
+At Tides, I partnered with Legal and Compliance to design and execute a 110-item compliance audit — covering expenditure responsibility, anti-bribery/anti-corruption, and IRS and global regulatory frameworks — that made our systems audit-proof: 70 high-priority items closed within 7 months, 95% of the full audit within a year. I have not personally run UK-entity compliance, but the discipline transfers directly, and it has to: Longview operates US and UK entities across four hubs, and `build_compliance_calendar()` generates a recurring, jurisdiction-by-jurisdiction review cadence for exactly that split (not a legal opinion — a planning framework a compliance lead and outside counsel would fill in with jurisdiction-specific detail).
 
 ### 3. Leadership development
 *"Manage and coach People Operations, Business Operations, Finance, Talent, and Grants Management leads."*
