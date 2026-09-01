@@ -1,82 +1,136 @@
 # Longview Philanthropy — COO Operating Model
 
-**A working demonstration of how I'd approach the Chief Operating Officer role, built against Longview's actual public job description.**
+A working demonstration of how I would approach the Chief Operating Officer role, built directly against Longview's public job description.
 
-Ariel Carter — [arielebright@gmail.com](mailto:arielebright@gmail.com) · [linkedin.com/in/ariel-carter1](https://www.linkedin.com/in/ariel-carter1) · [github.com/AC-tech-alt](https://github.com/AC-tech-alt)
+**Ariel Carter** — [arielebright@gmail.com](mailto:arielebright@gmail.com) · [linkedin.com/in/ariel-carter1](https://www.linkedin.com/in/ariel-carter1) · [github.com/AC-tech-alt](https://github.com/AC-tech-alt)
 
-## Why this exists
+## At a Glance
 
-Longview's COO posting asks for someone who can "build simple, robust systems for planning and decision-making that can scale" and "run operations as a service to the rest of Longview." A cover letter can describe that instinct; this repo tries to show it — a small toolkit that turns a description of an org (headcount, departments, jurisdictions) into three artifacts a new COO would actually want ready in week one: a phased hiring plan with a budget view, a decision-rights matrix with named owners, and a jurisdiction-specific compliance cadence. It's deliberately small and readable, not a finished product.
+- **What this is:** a small, working toolkit (`ops_model.py`) that turns a description of Longview's org into three artifacts an incoming COO would want ready in week one — a phased, budget-aware hiring plan; a decision-rights matrix with named ownership; and a jurisdiction-specific compliance cadence — plus a structured `summary.json` export.
+- **Why it's built this way:** every input is sourced from Longview's own public materials, not a generic operational template or invented data.
+- **What it doesn't do:** solve the two real experience gaps named in Pillar 4, or substitute for legal or financial advice. Both are named plainly rather than smoothed over.
+- **How to confirm it's real, not just markdown:** clone it, `pip install -r requirements.txt`, run `python ops_model.py sample_org.yaml`, and all four output files regenerate from scratch. `python tests/test_ops_model.py` runs the test suite.
 
-## Grounded in Longview's actual mission and current priorities
+## Why This Exists
 
-Built against Longview's own public materials, not a generic COO template:
+Longview's COO posting asks for a leader who can build simple, robust systems for planning and decision-making that scale, and run operations as a service to the rest of Longview. While a cover letter can describe that instinct, this repository aims to demonstrate it. It contains a lightweight operational toolkit that turns an organizational footprint — headcount, departments, jurisdictions — into three core artifacts an incoming COO would want ready in week one:
 
-- **Mission and theory of change** ([longview.org](https://www.longview.org/)): Longview directs philanthropic capital toward catastrophic risks — nuclear war between great powers, engineered pandemics, and AI misuse — on the premise that "strategic generosity can... alter the course of history." Capital flows through vehicles like the Frontier AI Fund and Nuclear Weapons Policy Fund. That's why compliance and governance in this repo aren't decorative: when the capital and the risk are both this consequential, operational rigor is part of the mission, not overhead on top of it.
-- **Current scale and trajectory** (Longview's public hiring materials): the org grew from roughly 24 to 35+ staff through 2026 while more than doubling annual grantmaking to $60M+, and the COO posting asks for the same trajectory again — doubling headcount toward ~70. `sample_org.yaml` and `ops_model.py`'s phase-mix logic are built around exactly that shape of growth.
-- **Culture and working style** (published by a Longview team member on the [EA Forum](https://forum.effectivealtruism.org/posts/aX8xLjCLd4LMDpTYL/)): the org wants self-directed operators comfortable with ambiguity — "career progression isn't predetermined... advancement comes through tackling progressively harder, important problems" — across a distributed team spanning eight timezones and four hubs (Berkeley, DC, NYC, London).
+1. **A Phased Hiring Plan** with a tiered budget view.
+2. **A Decision-Rights Matrix** with clear, named ownership.
+3. **A Jurisdiction-Specific Compliance Cadence.**
 
-## Mapping to the role's five pillars
+This repository is intentionally clean, readable, and focused — a functional blueprint rather than a finished product.
 
-### 1. Scaling & growth strategy
-*"Design and execute the operations and hiring strategy to double Longview's headcount."*
+## Grounded in Longview's Mission & Priorities
 
-I joined GlobalGiving at roughly 20 employees and helped architect the grant management infrastructure that supported its growth to 100+ employees today. At Tides, I recruited, coached, and developed a 15-person team including two direct-report managers, building management capability across multiple organizational layers as the portfolio scaled. `build_scaling_plan()` shows the mechanics I'd bring to Longview specifically: leadership/manager hires sequenced ahead of individual-contributor hires so the org doesn't outgrow its own management capacity, phased by quarter against the headcount-doubling target — and converted into an illustrative budget view that prices manager and IC hires *differently* — a flat blended rate would make a manager-heavy quarter (Phase 1) look exactly as cheap as an IC-heavy one (Phase 3), which understates real cost. At an illustrative ~$6.1M/year, that's a number worth sanity-checking against Longview's own public scale (>$60M in annual grantmaking) rather than handing over a hiring plan with no budget context — the kind of check a fiscal-governance-minded COO brings to a leadership meeting, not just a headcount chart.
+Built using Longview's public materials rather than a generic operational template:
 
-### 2. Regulatory & compliance
-*"Stay on top of regulatory requirements across the jurisdictions we operate in."*
+- **Mission & Theory of Change** ([longview.org](https://www.longview.org/)): Longview directs philanthropic capital toward catastrophic risks — including nuclear war between great powers, engineered pandemics, and AI misuse — under the premise that *"strategic generosity can... alter the course of history."* Capital flows through vehicles like the Frontier AI Fund and Nuclear Weapons Policy Fund. When capital and risk are both this consequential, operational rigor is not overhead — it is core to the mission.
+- **Scale & Growth Trajectory:** Longview grew from roughly 24 to 35+ staff through 2026 while more than doubling annual grantmaking to >$60M. The COO posting calls for that same trajectory to repeat, doubling headcount toward ~70. Both `sample_org.yaml` and the phase-mix logic in `ops_model.py` are modeled specifically around this growth profile.
+- **Culture & Working Style:** a Longview team member's public [EA Forum post](https://forum.effectivealtruism.org/posts/aX8xLjCLd4LMDpTYL/) describes a self-directed operating style where career growth comes through *"tackling progressively harder, important problems"* rather than a predetermined ladder — across a distributed team spanning eight time zones and four hubs (Berkeley, DC, NYC, London).
 
-At Tides, I partnered with Legal and Compliance to design and execute a large-scale, multi-area compliance audit — covering expenditure responsibility, anti-bribery/anti-corruption, and IRS and global regulatory frameworks — that made our systems audit-proof, closing the large majority of priority items within months and substantially completing the full scope within about a year. (Deliberately kept at that level of generality rather than exact figures — this is a former employer's internal audit, not something to detail publicly.) I haven't personally run UK-entity compliance, but the discipline transfers, and it has to: Longview operates US and UK entities across four hubs. `build_compliance_calendar()` generates jurisdiction-specific cadences rather than one generic template — US Form 990 and state solicitation-registration deadlines are different animals from a UK Charity Commission Annual Return and Companies House filing, and a compliance plan that treats them identically isn't a real plan. It also splits grantee/partner due-diligence into three lenses instead of one, because a generic nonprofit template collapses them: standard sanctions/COI screening; **capability/infohazard screening for AI-safety grants** (a proposal can be safety-motivated and still be capabilities-uplifting if published, which needs a technical reviewer in the loop, not just Legal); and **export-control/sanctioned-jurisdiction awareness for nuclear-policy grants** (OFAC and ITAR/EAR-adjacent questions a generalist legal review can miss without nonproliferation-specific input). The RACI matrix reflects that directly — due-diligence now names a technical/subject-matter reviewer as Consulted, not just Finance and outside counsel — and separates two decisions a grants-operations lead actually lives with day to day: individual grant approval (tiered by a delegation threshold) versus the board/CEO-level call of allocating capital across program areas (Frontier AI Fund vs. Nuclear Weapons Policy Fund). The first draft of this repo only modeled the second one.
+## Mapping to the Five Operational Pillars
 
-### 3. Leadership development
-*"Manage and coach People Operations, Business Operations, Finance, Talent, and Grants Management leads."*
+### 1. Scaling & Growth Strategy
 
-This is close to the highest-leverage part of what I did at Tides: managing managers, not just individual contributors, through six major organizational transformations that redesigned workflows, decision rights, and reporting structures as the portfolio scaled. `build_decision_rights_matrix()` demonstrates the artifact I'd bring in week one — but rather than one templated "COO / Lead / CEO" row repeated across every decision, each one names a specific owner (Talent leads hiring approvals, Finance leads budget commitments, Grants Management leads fund allocation and due-diligence) so authority is explicit and function-specific from day one, not negotiated case by case. One honest wrinkle worth naming: Phase 1 of the hiring plan brings on more managers than ICs (4 vs. 3) — that's deliberate, not an error, because those leadership hires are expected to also absorb reporting lines from *existing* staff via the org-chart-change decision above, not just manage the net-new ICs arriving the same quarter. A plan that only reconciled against net-new headcount and ignored the org's existing management structure is the kind of gap a People lead catches immediately. The matrix also now routes performance management and PIP decisions through outside counsel as a Consulted party, not just People Operations and the COO — UK termination law is considerably less forgiving than at-will US practice, and that's not a difference a US-centric instinct catches on its own.
+> "Design and execute the operations and hiring strategy to double Longview's headcount."
 
-### 4. Innovative functions — named honestly
-*"Build finance function covering internal accounting and capital investment."* *"Develop recruiting function that includes headhunting for grantee organizations."*
+**Track Record:** I joined GlobalGiving at roughly 20 employees and helped architect the grant management infrastructure that supported its growth to 100+ team members. At Tides, I built, coached, and developed a 15-person team (including two direct-report managers), establishing management capacity across organizational layers during rapid portfolio scaling.
 
-Two real gaps, named plainly rather than smoothed over:
+**Application in Model:** `build_scaling_plan()` shows the mechanics I would bring to Longview:
 
-- **Capital investment:** my Tides work was on the grants-disbursement and compliance side, not investment-committee or endowment/reserve management, though I worked closely with the impact team there. The closest adjacent evidence I have is founder-side, not investment-side: I founded and scaled two organizations from the ground up — Ariel Bright Fitness and D.C. Soccer Sessions — owning full P&L, budgeting, and cash-flow management for a combined base of 750+ clients with no finance team behind me. That's real, hands-on ownership of a finance function; it isn't the institutional capital-investment or endowment-management experience Longview is asking for, and I'd expect to ramp up there rather than claim existing depth.
-- **Headhunting founders for grantee orgs:** I haven't done this exact work. The closest adjacent evidence is twofold. First, GlobalGiving's confirmed role in the Pepsi Refresh Project: PepsiCo's own newsroom states that "Pepsi will also continue its partnership with Global Giving to administer grant disbursements and monitoring" for the program, which by 2011 had grown to $1M+ in monthly grants across $5,000–$50,000 tiers ([PepsiCo, 2011](https://www.pepsico.com/newsroom/press-releases/2011/pepsi-taps-consumers-to-shake-up-refresh-project-in-2011)) — alongside GlobalGiving's independently documented relationships with [Nike](https://tools.blog.globalgiving.org/2011/03/21/nikes-employee-giving-program-on-globalgiving/) and [Microsoft](https://www.globalgiving.org/companies/case-studies/msft/). Second, on the founder side specifically: having personally founded and run two organizations from zero gives me a genuine, lived sense of what an early-stage founder actually needs from a funder or operating partner. Neither is the same skill as sourcing and vetting external founders to fund, and I'm not presenting it as equivalent — but together they're closer than a purely administrative read of my resume would suggest.
+- **Sequenced hiring:** leadership and manager roles are placed ahead of individual-contributor (IC) roles so organizational management capacity stays ahead of growth, not behind it.
+- **Tiered budgeting:** manager and IC roles are priced differently across quarterly phases. A flat blended rate would make a manager-heavy phase (Phase 1) look artificially cheap next to an IC-heavy phase (Phase 3). At an illustrative ~$6.1M/year, this budget view offers a pragmatic sanity-check against Longview's >$60M grantmaking scale — the kind of fiscal-governance check a COO should bring to a leadership meeting, not just a headcount chart.
 
-### 5. Systems & processes
-*"Build simple, robust systems for planning and decision-making that can scale. Streamline and automate operational work. Run operations as a service."*
+### 2. Regulatory & Compliance
 
-The repo itself is built the way this pillar asks: small, versioned, tested (`tests/`), and checked by CI on every push (`.github/workflows/test.yml`) — the same instinct behind the AI/digital adoption initiative I led at Tides, which modernized workflows and executive reporting and directly improved decision-making speed. It's meant to be legible to whoever has to pick it up after me, not just to me.
+> "Stay on top of regulatory requirements across the jurisdictions we operate in."
 
-## What's in this repo
+**Track Record:** At Tides, I partnered with Legal and Compliance to design and execute a large-scale, multi-area compliance audit covering expenditure responsibility, anti-bribery/anti-corruption, and IRS and global regulatory frameworks. That work systematically fortified our systems — closing the large majority of priority findings within months and substantially completing the full scope within about a year. (Kept at that level of generality rather than exact figures here, since this is a former employer's internal audit, not something to detail on a public page.)
 
-- **`ops_model.py`** — reads a description of an org and generates a phased hiring plan (manager/IC-differentiated budget view), a named-ownership RACI matrix with tiered grant-approval and delegation-threshold logic, a jurisdiction- and sector-specific compliance cadence, and a structured `summary.json` export.
-- **`sample_org.yaml`** — an illustrative input modeled on Longview's public org description (four departments, ~35 people scaling toward ~70, US/UK jurisdictions, a department→functional-lead map). Built entirely from Longview's own published careers page — no internal data.
-- **`output/`** — the four artifacts generated by running the model against the sample input, including a machine-readable `summary.json` with generation lineage (generated, not hand-written — see below for the real output).
-- **`tests/`** — a test suite covering the planning logic, input validation, and the structured-data export.
-- **`.github/workflows/test.yml`** — CI that runs the test suite on every push.
+**Application in Model:** I have not personally managed UK-entity compliance, but the discipline transfers, and it has to — Longview operates US and UK entities across four hubs:
+
+- **Jurisdictional precision:** `build_compliance_calendar()` builds distinct cadences for US entities (Form 990, state solicitation registrations) versus UK entities (Charity Commission Annual Return, Companies House filings) rather than one generic template.
+- **Specialized due diligence:** the model splits grantee/partner due diligence into three lenses instead of one:
+  1. **Standard** — sanctions and conflict-of-interest screening.
+  2. **AI safety** — capability and infohazard screening, so a safety-motivated proposal doesn't inadvertently uplift dangerous capability without technical review.
+  3. **Nuclear policy** — export-control and sanctioned-jurisdiction awareness (OFAC, ITAR/EAR-adjacent considerations).
+- **Operational RACI:** technical reviewers are named as *Consulted* alongside Legal, and day-to-day grant approval is explicitly separated from board/CEO-level fund allocation across program areas (e.g., Frontier AI Fund vs. Nuclear Weapons Policy Fund).
+
+### 3. Leadership Development
+
+> "Manage and coach People Operations, Business Operations, Finance, Talent, and Grants Management leads."
+
+**Track Record:** At Tides, managing managers was among my highest-leverage responsibilities. I guided leadership through six major organizational transformations, redesigning workflows, decision rights, and reporting structures as the portfolio grew.
+
+**Application in Model:** `build_decision_rights_matrix()` reflects a week-one operational framework:
+
+- **Named ownership:** replaces generic RACI rows with functional owners — Talent leads hiring approvals, Finance leads budget commitments, Grants Management leads fund allocation and due diligence.
+- **Absorptive capacity:** Phase 1 of the hiring plan intentionally brings on more managers than ICs (4 vs. 3) to absorb existing reporting lines alongside new hires, not just manage net-new headcount.
+- **Cross-border realities:** the matrix routes performance management and PIP decisions through outside counsel as a *Consulted* party, accommodating UK employment-law differences relative to US at-will practice.
+
+### 4. Specialized & Innovative Functions — Named Honestly
+
+> "Build finance function covering internal accounting and capital investment." / "Develop recruiting function that includes headhunting for grantee organizations."
+
+I believe in naming professional-development areas plainly rather than overstating capability:
+
+- **Capital investment:** my background at Tides centered on grant disbursement, compliance, and operational governance rather than investment-committee management or reserve investing. My primary hands-on P&L experience comes from founding and running two small businesses — Ariel Bright Fitness and D.C. Soccer Sessions — where I owned cash-flow management, budgeting, and operations for a combined base of 750+ clients with no finance team behind me. That built real financial discipline, but institutional endowment and capital-investment management at Longview's scale is an area I'd expect to actively ramp up in, not one I'd claim existing depth in.
+- **Founder headhunting:** sourcing external founders for grantee organizations isn't a function I've directly owned. The closest adjacent evidence is GlobalGiving's confirmed role administering the Pepsi Refresh Project's grant disbursements — a program that, per PepsiCo's own 2011 newsroom release, had grown to $1M+ in monthly grants by 2011 — alongside GlobalGiving's independently documented partnerships with Nike and Microsoft. On the founder side specifically, having personally founded and run two organizations from zero gives me a genuine, lived sense of what an early-stage founder needs from a funder or operating partner. Neither is the same skill as sourcing and vetting external founders to fund, and I'm not presenting it as equivalent — but together they're closer than a purely administrative read of my resume would suggest.
+
+### 5. Systems & Processes
+
+> "Build simple, robust systems for planning and decision-making that can scale."
+
+**Application in Model:** this repository mirrors the operational approach I'd bring — modular, versioned, tested (`tests/`), and continuously verified via CI (`.github/workflows/test.yml`). It reflects the same digital-adoption mindset I used at Tides to modernize executive reporting and accelerate decision-making speed, applied here to a codebase instead of a slide deck.
+
+## Board & CEO Visibility
+
+A COO's systems earn their keep by what they surface to the people who have to act on them — not just by existing. Two things this model is built to support:
+
+**Reporting cadence.** The Q4 items in the compliance calendar (board-approved budget and reserve policy, audit prep) are timed to a typical annual board cycle rather than treated as a standalone compliance task. `summary.json`'s generation lineage (timestamp, source file) is meant to feed a recurring ops dashboard, not sit as a one-off report — the same structured-data instinct a board expects from monthly or quarterly management reporting. Every above-threshold grant or budget decision routes to the CEO by design in the RACI matrix, not as an exception someone has to remember to escalate.
+
+**Top operational risks this model surfaces for year one:**
+
+| Risk | Why It Matters | How This Model Handles It |
+| --- | --- | --- |
+| Management capacity lags headcount growth | Doubling staff in 18 months can outrun the org's ability to actually manage the new hires | Phase 1 front-loads managers (4 of 7 hires) ahead of ICs, sized to absorb existing reporting lines too, not just new headcount |
+| A department has no clear functional owner | `donor_advising` doesn't map cleanly to any of the five named functional leads in the public JD | Flagged as `null` in `summary.json` on purpose rather than guessed — a real week-one question for the CEO |
+| Cross-jurisdiction compliance treated as one template | US and UK entities carry materially different filings, deadlines, and employment law | `build_compliance_calendar()` generates separate cadences; the RACI matrix routes UK-relevant PIP/termination decisions through outside counsel |
+| AI-safety or nuclear-policy grants get standard nonprofit due diligence only | A safety-motivated proposal can still be capabilities-uplifting if published; nonproliferation issues need specialist input a generalist review can miss | Due diligence splits into three lenses (standard, infohazard, export-control) with a technical reviewer named as Consulted, not folded into Legal |
+| Illustrative budget figures get mistaken for real ones | `avg_fully_loaded_cost_per_fte` in `sample_org.yaml` is a placeholder, not a comp band | Called out explicitly in Scope & Operational Limitations — swap in real figures before using this as anything but a demonstration |
+
+## Repository Architecture
+
+- **`ops_model.py`** — core logic engine. Reads an organizational spec and outputs a phased hiring plan, a functional RACI matrix, a jurisdiction-specific compliance calendar, and a structured `summary.json`.
+- **`sample_org.yaml`** — illustrative input file based on Longview's public footprint (four departments, ~35 staff scaling toward ~70 across US/UK hubs).
+- **`output/`** — generated markdown artifacts and machine-readable data outputs.
+- **`tests/`** — automated test suite verifying calculation logic, input validation, and data exports.
+- **`.github/workflows/test.yml`** — CI pipeline running tests on every push.
 - **`.github/dependabot.yml`** — automated dependency and Action version updates.
 - **`LICENSE`** — MIT.
-- **`NOTE_TO_CEO.md`** — the short note meant to accompany this link when I reach out directly.
+- **`NOTE_TO_CEO.md`** — a short, contextual note meant to accompany this link when I reach out directly.
 
-## Sample output
+## Sample Outputs
 
-Real output from `python ops_model.py sample_org.yaml`, trimmed for length (full files in `output/`):
+Real output from `python ops_model.py sample_org.yaml`, trimmed for length (full files in `output/`).
 
-**Phased hiring plan** — 35 net-new hires to double headcount in 18 months, manager and IC hires priced differently so an early, leadership-heavy phase doesn't look as cheap as a later, IC-heavy one:
+**1. Phased Hiring Plan** — 35 net-new hires phased over 18 months, with differentiated pricing for leadership vs. IC roles:
 
-| Phase | New hires | Manager/lead hires | IC hires | Incremental annualized cost |
-|---|---|---|---|---|
-| Q1 — Foundational leadership | 7 | 4 | 3 | $1,315,000 |
-| Q2–Q3 — Core team build-out | 12 | 3 | 9 | $2,100,000 |
-| Q4–Q6 — Scale & specialize | 16 | 2 | 14 | $2,720,000 |
+| Phase | Total New Hires | Manager/Lead Hires | IC Hires | Incremental Annualized Cost |
+| --- | --- | --- | --- | --- |
+| **Q1 — Foundational Leadership** | 7 | 4 | 3 | $1,315,000 |
+| **Q2–Q3 — Core Team Build-out** | 12 | 3 | 9 | $2,100,000 |
+| **Q4–Q6 — Scale & Specialize** | 16 | 2 | 14 | $2,720,000 |
 
-**Decision-rights matrix** — rows a generic RACI template wouldn't include:
+**2. Decision-Rights Matrix** (excerpt):
 
-| Decision | R | A | C | I |
-|---|---|---|---|---|
-| Individual grant approval (above the delegation threshold) | Grants Management | CEO | COO, Finance, Outside counsel | All functional leads |
-| Grantee & partner due-diligence / conflict-of-interest screening | Grants Management | COO | Finance, Outside counsel, Technical/subject-matter reviewer | CEO |
+| Decision | Responsible (R) | Accountable (A) | Consulted (C) | Informed (I) |
+| --- | --- | --- | --- | --- |
+| **Individual Grant Approval** *(Above threshold)* | Grants Management | CEO | COO, Finance, Outside Counsel | All Functional Leads |
+| **Grantee Due Diligence & COI** | Grants Management | COO | Finance, Outside Counsel, Technical Reviewer | CEO |
 
-**`summary.json`** — a structured, machine-readable export alongside the three markdown files, with generation lineage and the department↔functional-lead taxonomy map (including the one department, `donor_advising`, that doesn't cleanly map to any of the five named leads — flagged as `null` on purpose rather than guessed):
+**3. Machine-Readable Export** (`summary.json`):
 
 ```json
 {
@@ -91,47 +145,46 @@ Real output from `python ops_model.py sample_org.yaml`, trimmed for length (full
 }
 ```
 
-**Compliance calendar** — jurisdiction-specific, not identical templates for US and UK:
+**4. Compliance Calendar** (excerpt):
 
-| Jurisdiction | Q2 focus |
-|---|---|
-| US — 501(c)(3)/(c)(4) | IRS Form 990 preparation & filing (due the 15th day of the 5th month after fiscal year-end) |
-| UK — UK registered charity | Trustees' Annual Report & Accounts (due within 10 months of financial year-end to the Charity Commission) |
+| Jurisdiction | Q2 Primary Focus |
+| --- | --- |
+| **US — 501(c)(3) / 501(c)(4)** | IRS Form 990 preparation and filing (due 15th day of 5th month post fiscal year-end). |
+| **UK — Registered Charity** | Trustees' Annual Report & Accounts (due within 10 months of financial year-end to the Charity Commission). |
 
-## How to run it
+## Getting Started
 
 ```bash
+# Install dependencies
 pip install -r requirements.txt
+
+# Execute model generator
 python ops_model.py sample_org.yaml
+
+# Run test suite
 python tests/test_ops_model.py
 ```
 
-Outputs land in `output/`: `scaling_plan.md`, `decision_rights_matrix.md`, `compliance_calendar.md`. Tests also run automatically in CI on every push.
+Generated files land in `/output`. Tests also run automatically via GitHub Actions on every push.
 
-## Scope & limitations
+## Scope & Operational Limitations
 
-- No real Longview financial or personnel data anywhere in this repo — everything is derived from Longview's public job description and website.
-- `avg_fully_loaded_cost_per_fte` in `sample_org.yaml` is an illustrative placeholder, not a comp band — swap in Longview's real figures before treating the budget line as anything but a demonstration.
-- The compliance calendar is a planning cadence, not legal advice. Real deadlines, thresholds, and jurisdiction-specific requirements should always be confirmed with counsel/accountant.
-- This repo doesn't attempt to solve the two gaps named in Pillar 4 (capital investment, founder headhunting) — it names them honestly instead of building a fake solution to look complete.
-- No confidential or proprietary information from any current or former employer appears here — the Tides figures referenced (audit scope, portfolio size, team size) are the same summary-level figures already used in my resume and cover letter, not internal documents, systems, or methodologies.
-- Mentions of PepsiCo, Nike, Microsoft, GlobalGiving, and Longview Philanthropy are for factual identification only — no endorsement, sponsorship, or affiliation by any named organization is implied, and no logos or other trademarked material appear anywhere in this repo.
-- Quotations from public sources (Longview's website, a Longview team member's public post, the Longview job posting, PepsiCo's newsroom) are short, attributed excerpts used for identification and context — see Sources below for the full originals.
-- Doesn't allocate new hires across Longview's four hubs, model visa/immigration lead time for international hires, or account for US/UK currency and cost-of-living differences in the budget line — a real hiring plan needs that layer; this one names the gap instead of faking it.
-- Doesn't design job leveling or career ladders — Longview's own stated culture ("career progression isn't predetermined") makes that a real design question, not a checkbox, and it's out of scope here.
-- The due-diligence lenses named in the compliance calendar (capability/infohazard review, export-control awareness) describe what should exist, not a working screening tool — building the actual workflow needs real technical and nonproliferation expertise, not a script.
-- `summary.json` is a first step toward separating structured data from markdown presentation, not a full data build-out — a real version would extend the same pattern to all three artifacts and integrate with an actual system of record (HRIS, grants CRM) with real access controls around anything touching due-diligence data.
+- **Public data only.** All models, costs, and organizational structures are derived exclusively from Longview's public job description and website — no proprietary or internal data appears anywhere in this repo.
+- **Cost placeholders.** The `avg_fully_loaded_cost_per_fte` and `avg_fully_loaded_cost_manager` figures in `sample_org.yaml` are illustrative estimates, not real comp bands — swap in Longview's real figures before treating the budget line as anything but a demonstration.
+- **Legal disclaimer.** The compliance calendar is an operational planning cadence, not formal legal or tax advice. Real deadlines, thresholds, and jurisdiction-specific requirements should always be confirmed with counsel or an accountant.
+- **Named gaps, not fake solutions.** This model doesn't attempt to solve the two gaps named in Pillar 4 (capital investment, founder headhunting) — it names them honestly instead of building something that only looks complete.
+- **Out-of-scope items.** This model does not allocate hires across Longview's specific hubs, calculate visa/immigration lead times, model multi-currency or cost-of-living differences, or design internal job leveling/career ladders — Longview's own stated culture makes career-ladder design a real question, not a checkbox, and it's out of scope here.
+- **Due-diligence lenses describe intent, not a finished tool.** The infohazard and export-control lenses in the compliance calendar describe what should exist; building the actual screening workflow needs real technical and nonproliferation expertise, not a script.
+- **`summary.json` is a first step,** not a full data build-out — a real version would extend the same structured-export pattern to all artifacts and integrate with an actual system of record (HRIS, grants CRM) with real access controls around due-diligence data.
+- **The Board & CEO Visibility risk table is this model's own read of public data** — it is not Longview's actual risk register, and a real one would be built together with the CEO, board, and relevant functional leads.
+- **Prior-employer neutrality.** Figures referenced from former employers (Tides, GlobalGiving) are the same non-confidential, summary-level figures already used in my resume and cover letter — not internal documents, systems, or methodologies. Mentions of PepsiCo, Nike, Microsoft, GlobalGiving, and Longview Philanthropy are for factual identification only; no endorsement, sponsorship, or affiliation by any named organization is implied, and no logos or trademarked material appear anywhere in this repo.
 
-## Sources
+## Sources & References
 
-- Longview Philanthropy, COO job description: [longview.org/careers/chief-operating-officer](https://www.longview.org/careers/chief-operating-officer/)
-- Longview Philanthropy, mission and funds: [longview.org](https://www.longview.org/)
-- Longview team member, on culture and growth: [EA Forum post](https://forum.effectivealtruism.org/posts/aX8xLjCLd4LMDpTYL/)
-- PR Newswire, ["Pepsi Refresh Project To Award $1.3 Million In Grant Funding To Help Gulf Communities"](https://www.prnewswire.com/news-releases/pepsi-refresh-project-to-award-13-million-in-grant-funding-to-help-gulf-communities-97594079.html) (July 1, 2010) — the Gulf Coast relief round's scale and structure.
-- PepsiCo Newsroom, ["Pepsi Taps Consumers To Shake Up Refresh Project In 2011"](https://www.pepsico.com/newsroom/press-releases/2011/pepsi-taps-consumers-to-shake-up-refresh-project-in-2011) — PepsiCo's own confirmation that GlobalGiving administered grant disbursements and monitoring for the program.
-- Wikipedia, [Pepsi Refresh Project](https://en.wikipedia.org/wiki/Pepsi_Refresh_Project) — independent corroboration of the program's overall scale and categories.
-- GlobalGiving, [Nike employee giving program case study](https://tools.blog.globalgiving.org/2011/03/21/nikes-employee-giving-program-on-globalgiving/) and [Microsoft partnership case study](https://www.globalgiving.org/companies/case-studies/msft/) — independent documentation of the corporate partnerships named in Pillar 4.
-
-## A note on honesty
-
-Two sections above name real gaps instead of papering over them, and the "Scope & limitations" section above says plainly what this repo doesn't do. I'd rather walk into a work-trial having already told you where I'd need to ramp up than have that surface for the first time under pressure.
+1. Longview Philanthropy, COO job description — [longview.org/careers/chief-operating-officer](https://www.longview.org/careers/chief-operating-officer/)
+2. Longview Philanthropy, mission and funds — [longview.org](https://www.longview.org/)
+3. Longview team member, on culture and growth — [EA Forum post](https://forum.effectivealtruism.org/posts/aX8xLjCLd4LMDpTYL/)
+4. PR Newswire, ["Pepsi Refresh Project To Award $1.3 Million In Grant Funding To Help Gulf Communities"](https://www.prnewswire.com/news-releases/pepsi-refresh-project-to-award-13-million-in-grant-funding-to-help-gulf-communities-97594079.html) (July 1, 2010) — the Gulf Coast relief round's scale and structure.
+5. PepsiCo Newsroom, ["Pepsi Taps Consumers To Shake Up Refresh Project In 2011"](https://www.pepsico.com/newsroom/press-releases/2011/pepsi-taps-consumers-to-shake-up-refresh-project-in-2011) — PepsiCo's own confirmation that GlobalGiving administered grant disbursements and monitoring for the program.
+6. Wikipedia, [Pepsi Refresh Project](https://en.wikipedia.org/wiki/Pepsi_Refresh_Project) — independent corroboration of the program's overall scale and categories.
+7. GlobalGiving, [Nike employee giving program case study](https://tools.blog.globalgiving.org/2011/03/21/nikes-employee-giving-program-on-globalgiving/) and [Microsoft partnership case study](https://www.globalgiving.org/companies/case-studies/msft/) — independent documentation of the corporate partnerships named in Pillar 4.
