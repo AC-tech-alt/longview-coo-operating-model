@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-09-01",
+  "source_file": "sample_org.yaml",
+  "organization": "Longview Philanthropy",
+  "current_headcount_total": 35,
+  "target_headcount_total": 70,
+  "net_new_hires": 35,
+  "functional_leads": [
+    "People Operations",
+    "Business Operations",
+    "Finance",
+    "Talent",
+    "Grants Management"
+  ],
+  "jurisdictions": [
+    "US",
+    "UK"
+  ],
+  "department_functional_lead_map": {
+    "operations": "Business Operations",
+    "donor_advising": null,
+    "ai_grantmaking": "Grants Management",
+    "nuclear_grantmaking": "Grants Management"
+  },
+  "schema_note": "current_headcount's departments and functional_leads are two separate taxonomies drawn from different parts of Longview's public JD, and they don't fully reconcile. See department_functional_lead_map for the attempted mapping \u2014 any department mapped to null is a real open question, not a bug, and should be one of the first things a new COO resolves with the CEO."
+}
