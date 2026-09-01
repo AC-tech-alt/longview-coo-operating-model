@@ -14,6 +14,20 @@ current_headcount:
 target_multiplier: 2.0
 timeline_months: 18
 
+# Illustrative placeholders only — NOT real Longview comp figures. A manager/lead
+# hire is modeled as costing more than an IC hire (per Finance-lens feedback: a flat
+# blended rate makes a manager-heavy phase look as cheap as an IC-heavy one, which
+# understates early-phase cost). Swap both for Longview's real comp bands before
+# using this for anything but a demonstration.
+avg_fully_loaded_cost_per_fte: 165000
+avg_fully_loaded_cost_manager: 205000
+
+# Illustrative placeholder — the dollar level at which a budget or grant commitment
+# escalates from Finance/Grants Management's own authority to COO (or CEO)
+# accountability. An undefined threshold makes that RACI row decorative rather than
+# something a Finance or Grants lead can actually operate against.
+budget_commitment_threshold: 50000
+
 # JD: "stay on top of regulatory requirements across the jurisdictions we operate in"
 jurisdictions:
   - name: "US"
@@ -29,3 +43,14 @@ functional_leads:
   - "Finance"
   - "Talent"
   - "Grants Management"
+
+# Data-architect note: current_headcount's departments and functional_leads are two
+# separate taxonomies pulled from different parts of Longview's public JD, and they
+# don't fully reconcile. "donor_advising" in particular isn't obviously owned by any
+# of the five named leads above — mapped to null on purpose rather than guessed, since
+# pretending it resolves cleanly would hide a real week-one question for the CEO.
+department_functional_lead_map:
+  operations: "Business Operations"
+  donor_advising: null   # not obviously owned by any of the five named leads — ask the CEO
+  ai_grantmaking: "Grants Management"
+  nuclear_grantmaking: "Grants Management"
