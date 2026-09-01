@@ -179,6 +179,16 @@ Generated files land in `/output`. Tests also run automatically via GitHub Actio
 - **The Board & CEO Visibility risk table is this model's own read of public data** — it is not Longview's actual risk register, and a real one would be built together with the CEO, board, and relevant functional leads.
 - **Prior-employer neutrality.** Figures referenced from former employers (Tides, GlobalGiving) are the same non-confidential, summary-level figures already used in my resume and cover letter — not internal documents, systems, or methodologies. Mentions of PepsiCo, Nike, Microsoft, GlobalGiving, and Longview Philanthropy are for factual identification only; no endorsement, sponsorship, or affiliation by any named organization is implied, and no logos or trademarked material appear anywhere in this repo.
 
+## Related Work
+
+This repo is one of several operational models I've built to demonstrate how I'd approach specific philanthropy and nonprofit-operations roles — each one grounded in a real organization's public information, not a generic template:
+
+- **[grant-operations-infrastructure-model](https://github.com/AC-tech-alt/grant-operations-infrastructure-model)** — building grant operations infrastructure for a foundation scaling to $1B+ in annual grantmaking. The closest sibling to this repo: same instinct for turning a scaling foundation's compliance and reporting load into working systems rather than a slide deck.
+- **[client-engagement-leadership-model](https://github.com/AC-tech-alt/client-engagement-leadership-model)** — leading the client engagement function for a philanthropic capital platform, covering performance, escalation, and relationship infrastructure.
+- **[business-enablement-concept-model](https://github.com/AC-tech-alt/business-enablement-concept-model)** — a plain-language concept model for how strategic initiatives move from problem to adopted, value-producing execution.
+
+Full list: [github.com/AC-tech-alt](https://github.com/AC-tech-alt?tab=repositories)
+
 ## Sources & References
 
 1. Longview Philanthropy, COO job description — [longview.org/careers/chief-operating-officer](https://www.longview.org/careers/chief-operating-officer/)
