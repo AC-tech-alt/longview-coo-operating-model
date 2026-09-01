@@ -4,11 +4,13 @@ Current headcount: **35** across 4 departments.
 Target headcount: **70** (2.0x) within **18 months**.
 Net new hires: **35**.
 
-| Phase | New hires | Manager/lead hires | IC hires |
-|---|---|---|---|
-| Q1 — Foundational leadership | 7 | 4 | 3 |
-| Q2–Q3 — Core team build-out | 12 | 3 | 9 |
-| Q4–Q6 — Scale & specialize | 16 | 2 | 14 |
+| Phase | New hires | Manager/lead hires | IC hires | Incremental annualized cost |
+|---|---|---|---|---|
+| Q1 — Foundational leadership | 7 | 4 | 3 | $1,315,000 |
+| Q2–Q3 — Core team build-out | 12 | 3 | 9 | $2,100,000 |
+| Q4–Q6 — Scale & specialize | 16 | 2 | 14 | $2,720,000 |
+
+**Illustrative incremental budget impact: ~$6,135,000/year** at a fully-loaded cost of $165,000 per IC and $205,000 per manager/lead hire — placeholder assumptions, not real Longview comp bands, differentiated so the budget line doesn't understate manager-heavy phases. Doesn't include one-time costs (recruiting, relocation, visa/immigration sponsorship) or currency differences across US/UK hires — see Scope & limitations.
 
 ## Departmental distribution (proportional to current size)
 
